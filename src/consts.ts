@@ -1,10 +1,10 @@
 import type { IconMap, SocialLink, Site } from '@/types'
 
 export const SITE: Site = {
-  title: "angad's blog",
-  description: 'my personal website and blog',
+  title: "Angad's Blog",
+  description: 'My personal website and blog',
   href: 'https://angad.page',
-  author: 'angad',
+  author: 'Angad Tendulkar',
   locale: 'en-US',
   featuredPostCount: 3,
   postsPerPage: 5,
