@@ -12,6 +12,7 @@ import rehypeKatex from 'rehype-katex'
 import rehypeShiki from '@shikijs/rehype'
 import remarkEmoji from 'remark-emoji'
 import remarkMath from 'remark-math'
+import remarkWikiLinks from 'remark-wiki-link'
 
 import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections'
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
@@ -102,6 +103,16 @@ export default defineConfig({
         },
       ],
     ],
-    remarkPlugins: [remarkMath, remarkEmoji],
+    remarkPlugins: [
+      remarkMath,
+      remarkEmoji,
+      [
+        remarkWikiLinks,
+        {
+          pageResolver: (name: string) => name.replace(/ /g, '-').toLowerCase(),
+          hrefTemplate: (permalink: string) => `/blog/${permalink}`,
+        },
+      ],
+    ],
   },
 })
