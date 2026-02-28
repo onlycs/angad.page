@@ -5,6 +5,8 @@ import PageHead from '@/components/PageHead.astro'
 import ProjectCard from '@/components/ProjectCard.astro'
 import Layout from '@/layouts/Layout.astro'
 import { getAllProjects } from '@/lib/data-utils'
+import { Image } from 'astro:assets'
+import logo from '../../public/profile.png'
 
 const projects = await getAllProjects()
 ---
@@ -15,33 +17,43 @@ const projects = await getAllProjects()
 
   <section>
     <div class="min-w-full">
-      <div class="prose mb-8">
-        <p class="mt-0">
-          astro-erudite is an opinionated, unstyled static blogging template
-          that prioritizes simplicity and performance, built with <Link
-            href="https://astro.build"
-            external
-            underline>Astro</Link
-          >, <Link href="https://tailwindcss.com" external underline
-            >Tailwind</Link
-          >, and <Link href="https://ui.shadcn.com" external underline
-            >shadcn/ui</Link
-          >. It provides a clean foundation for your content while being
-          extremely easy to customize.
-        </p>
-        <p>
-          To learn more about the philosophy behind this template, check out the
-          following blog post: <Link
-            href="/blog/the-state-of-static-blogs"
-            underline>The State of Static Blogs in 2024</Link
-          >.
-        </p>
-      </div>
+      <h1 class="mb-4 text-3xl font-bold">
+        <Image
+          src={logo}
+          alt="Logo"
+          class="float-left mr-4 size-12 rounded-sm"
+        />
+        About Me
+      </h1>
+      <p class="prose prose-neutral dark:prose-invert mt-6 mb-8">
+        Hi! I'm <b>angad</b>. I'm currently a senior in high school. You can
+        find me on
+        <Link href="https://github.com/onlycs" external>GitHub</Link> here.
+      </p>
+    </div>
 
-      <h2 class="mb-4 text-2xl font-medium">Example Projects Listing</h2>
-      <div class="flex flex-col gap-4">
-        {projects.map((project) => <ProjectCard project={project} />)}
-      </div>
+    <h2 class="mb-4 text-2xl font-medium">Biggest Projects</h2>
+    <div class="flex flex-col gap-4">
+      {
+        projects
+          .sort((a, b) => {
+            const aPresent = a.data.endDate === 'present'
+            const bPresent = b.data.endDate === 'present'
+            if (aPresent && !bPresent) return -1
+            if (!aPresent && bPresent) return 1
+            if (aPresent && bPresent) {
+              return (
+                new Date(b.data.startDate).getTime() -
+                new Date(a.data.startDate).getTime()
+              )
+            }
+            return (
+              new Date(b.data.endDate).getTime() -
+              new Date(a.data.endDate).getTime()
+            )
+          })
+          .map((project) => <ProjectCard project={project} />)
+      }
     </div>
   </section>
 </Layout>

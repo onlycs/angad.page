@@ -16,22 +16,6 @@ const blog = defineCollection({
     }),
 })
 
-const authors = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/authors' }),
-  schema: z.object({
-    name: z.string(),
-    pronouns: z.string().optional(),
-    avatar: z.string().url().or(z.string().startsWith('/')),
-    bio: z.string().optional(),
-    mail: z.string().email().optional(),
-    website: z.string().url().optional(),
-    twitter: z.string().url().optional(),
-    github: z.string().url().optional(),
-    linkedin: z.string().url().optional(),
-    discord: z.string().url().optional(),
-  }),
-})
-
 const projects = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
   schema: ({ image }) =>
@@ -39,11 +23,11 @@ const projects = defineCollection({
       name: z.string(),
       description: z.string(),
       tags: z.array(z.string()),
-      image: image(),
+      image: image().optional(),
       link: z.string().url(),
-      startDate: z.coerce.date().optional(),
-      endDate: z.coerce.date().optional(),
+      startDate: z.coerce.date(),
+      endDate: z.coerce.date().or(z.literal('present')).default('present'),
     }),
 })
 
-export const collections = { blog, authors, projects }
+export const collections = { blog, projects }

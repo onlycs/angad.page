@@ -5,7 +5,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function formatDate(date: Date) {
+export function formatDate(date: Date | 'present') {
+  if (date === 'present') return 'Present'
   return Intl.DateTimeFormat('en-US', {
     year: 'numeric',
     month: 'long',
