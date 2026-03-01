@@ -38,7 +38,7 @@
     "rehype-katex": "^7.0.1",
     "remark-emoji": "^5.0.1",
     "remark-math": "^6.0.0",
-    "remark-wiki-link": "^2.0.1",
+    "remark-obsidian-link": "^0.2.4",
     "tailwind-merge": "^3.3.0",
     "tailwindcss": "^4.1.7",
     "typescript": "^5.8.3"
