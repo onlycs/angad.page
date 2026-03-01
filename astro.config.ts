@@ -109,7 +109,7 @@ export default defineConfig({
       [
         remarkObsidianLink,
         {
-          toLink: (link) => ({
+          toLink: (link: any) => ({
             value: link.alias ?? link.value,
             uri: `/blog/${link.value.replaceAll(/ /g, '-').toLowerCase()}`,
           }),
