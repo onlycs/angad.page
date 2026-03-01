@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "blog/Fluid Simulations.md",
+                "file": "authors/angad.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Fluid Simulations"
+              "title": "angad"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "blog/Fluid Simulations.md",
+                "file": "authors/angad.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Fluid Simulations"
+              "title": "Backlinks for angad"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "blog/Fluid Simulations.md",
+                "file": "authors/angad.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Fluid Simulations"
+              "title": "Outgoing links from angad"
             }
           },
           {
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "blog/Fluid Simulations.md",
+                "file": "authors/angad.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Fluid Simulations"
+              "title": "Outline of angad"
             }
           },
           {
@@ -196,10 +196,16 @@
   },
   "active": "0c17d81cc17ab93b",
   "lastOpenFiles": [
+    "blog/Ferrobot - Finishing FFI.md",
+    "blog/Operating Systems - Hello, World!.md",
+    "projects/angad-os.md",
+    "blog/WPILib's Coordinate System.md",
+    "blog/The State of Shaders.md",
+    "blog/The NYS K-12 Personal Electronic Device Policy.md",
+    "blog/Operating Systems - Memory Allocation.md",
+    "blog/Fluid Simulations.md",
     "blog/Makefile.md",
     "blog/Rate Limiting Controllers.md",
-    "blog/Operating Systems - Memory Allocation.md",
-    "blog/WPILib's Coordinate System.md",
     "blog/AP Language and Composition.md",
     "blog/The New Blog.md",
     "blog/Notes on Rebuilt.md",

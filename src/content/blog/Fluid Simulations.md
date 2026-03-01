@@ -2,6 +2,7 @@
 title: Fluid Simulations Writeup
 description: A writeup of the process of making a fluid simulation in Rust, from choosing a graphics library to writing compute shaders.
 date: 2025-02-26
+authors: ['Angad Tendulkar']
 tags:
   - projects
   - fluidsim
