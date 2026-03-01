@@ -20,19 +20,25 @@ import type { ExpressiveCodeTheme } from 'rehype-expressive-code'
 
 import tailwindcss from '@tailwindcss/vite'
 
+import cloudflare from '@astrojs/cloudflare';
+
 export default defineConfig({
   site: 'https://angad.page',
   integrations: [mdx(), react(), sitemap(), icon()],
+
   vite: {
     plugins: [tailwindcss()],
   },
+
   server: {
     port: 3000,
     host: true,
   },
+
   devToolbar: {
     enabled: false,
   },
+
   markdown: {
     syntaxHighlight: false,
     rehypePlugins: [
@@ -117,4 +123,6 @@ export default defineConfig({
       ],
     ],
   },
+
+  adapter: cloudflare(),
 })

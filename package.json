@@ -7,12 +7,15 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
-    "preview": "astro preview",
+    "preview": "npm run build && wrangler dev",
     "astro": "astro",
-    "prettier": "prettier --write **/*.{ts,tsx,css,astro} --ignore-path .gitignore"
+    "prettier": "prettier --write **/*.{ts,tsx,css,astro} --ignore-path .gitignore",
+    "deploy": "npm run build && wrangler deploy",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/cloudflare": "^12.6.12",
     "@astrojs/markdown-remark": "^6.3.1",
     "@astrojs/mdx": "^4.2.6",
     "@astrojs/react": "^4.2.7",
@@ -47,7 +50,8 @@
     "prettier": "^3.5.1",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-astro-organize-imports": "^0.4.11",
-    "prettier-plugin-tailwindcss": "^0.6.11"
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "wrangler": "^4.69.0"
   },
   "prettier": {
     "semi": false,
