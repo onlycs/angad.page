@@ -1,12 +1,13 @@
 ---
-title: 'Operating Systems - Hello, World!'
-description: 'My first steps in making an operating system'
-date: 2025-05-20
-authors: ['Angad Tendulkar']
+title: Operating Systems - Hello, World!
+description: My first steps in making an operating system
+date: 2025-05-19
+authors:
+  - Angad Tendulkar
 tags:
-  - 'operating-system'
-  - 'projects'
-  - 'rust'
+  - operating-system
+  - projects
+  - rust
 ---
 
 My next project, I decided, would be to make my own operating system. I realize it definitely will not compete with Windows or Linux. I plan to use this project as a tool to learn how operating systems actually work.

@@ -13,6 +13,7 @@ tags:
 The Xbox Series 2 Elite controllers have four paddles on the back of them. These paddles are not part of the generic controller HID spec, and as such, DriverStation has no support for them (as their own buttons). The Xbox Accessories App will allow you to do one of the following:
 1. Remap the paddles to buttons that already exist on the controller, or
 2. Map the paddles to keyboard presses
+
 I chose the latter
 ## Implementation
 KBNT stands for Keyboard over NetworkTables. The goal is to capture keypresses and send them to the robot. This is a little complicated in practice, but doable:

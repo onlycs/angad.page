@@ -6,7 +6,6 @@ authors: ['Angad Tendulkar']
 tags:
   - 'frc'
 ---
-
 To put it lightly, our robot is unbalanced. We have a very large elevator stationed on one end of the robot, with literally nothing on the other side. This means that it's going to be susceptible to tipping if we give it power and then immediately stop. Because the swerve modules are in brake mode, there is basically infinite deceleration as whatever closed loop controller tries to match the commanded as closely as possible. We could either rely on the driver to always remember to slowly decelerate the robot, or we could do it for him.
 
 ## Manual Attempt 1

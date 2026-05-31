@@ -1,12 +1,13 @@
 ---
-title: 'Ferrobot'
-description: 'An idea for a Rust FRC robot library'
-date: 2025-05-20
-authors: ['Angad Tendulkar']
+title: Ferrobot
+description: An idea for a Rust FRC robot library
+date: 2025-05-19
+authors:
+  - Angad Tendulkar
 tags:
-  - 'projects'
-  - 'frc'
-  - 'rust'
+  - projects
+  - frc
+  - rust
 ---
 
 Today, I've just finished laying a lot of the groundwork for ferrobot, a Rust FRC robot library

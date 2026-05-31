@@ -81,7 +81,7 @@ Makefiles are the perfect, all-in-one solution for monorepos in need of a way to
 
 [^7]: i remember webpack a little bit from my react days oh so long ago
 
-[^8]: Someone at Rust HQ should really consider fixing it's build times (**_cough_** dynamic libraries **_cough_**)
+[^8]: Someone at Rust HQ should really consider fixing its build times (**_cough_** dynamic libraries **_cough_**)
 
 [^9]: non-alcoholic of course
 
