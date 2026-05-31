@@ -58,7 +58,6 @@ So, instead of sending `Vec3`s, I actually had to send `Vec4`s, wasting god know
 To turn the fluid simulation curves into 3D, I had to recalculate every volume integral. To convert from polar coordinates to Cartesian coordinates, I was multiplying by $r$. To convert from spherical coordinates to Cartesian, I had to multiply by the Jacobian factor $r^2 \sin \theta$. You also need to add an extra integral: $\int_0^{2\pi} […] \, \mathrm{d}\phi$.
 #### 3.2.1. Density
 $$
-\displaylines{
 \begin{align*}
 V &= \int_0^{2\pi}
 	\int_0^\pi
@@ -70,11 +69,9 @@ V &= \int_0^{2\pi}
 	(\int_0^h (h-r)^2 \times r^2 \, \mathrm{d}r) \\
 &= \frac{2\pi \times h^5}{15}
 \end{align*}
-}
 $$
 #### 3.2.2. Near Density
 $$
-\displaylines{
 \begin{align*}
 V &= \int_0^{2\pi}
 	\int_0^\pi
@@ -86,11 +83,9 @@ V &= \int_0^{2\pi}
 	(\int_0^h (h-r)^3 \times r^2 \, \mathrm{d}r) \\
 &= \frac{2\pi \times h^6}{15}
 \end{align*}
-}
 $$
 #### 3.2.3. Viscosity
 $$
-\displaylines{
 \begin{align*}
 V &= \int_0^{2\pi}
 	\int_0^\pi
@@ -102,7 +97,6 @@ V &= \int_0^{2\pi}
 	(\int_0^h (h^2-r^2)^3 \times r^2 \, \mathrm{d}r) \\
 &= \frac{64\pi \times h^9}{315}
 \end{align*}
-}
 $$
 #### 3.2.4. Derivatives 
 $$
