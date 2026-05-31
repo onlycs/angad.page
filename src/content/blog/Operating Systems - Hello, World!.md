@@ -21,7 +21,7 @@ For those of you who are confused, there are multiple types (known as architectu
 
 ## A Guideline
 
-If you recall something from my [[Fluid Simulations#`ggez` — A Rust library to create a Good Game Easily|fluid simulation]] project, I had used `ggez` as a starting point to get the project off the ground before I replaced it with the much lower-level `wgpu`. I decided that I would probably need something similar. So I used [some other guy's code](https://osblog.stephenmarz.com) to get myself to an `elf` file that boots when run using QEMU.
+If you recall something from my [[Fluid Simulation#`ggez` — A Rust library to create a Good Game Easily|fluid simulation]] project, I had used `ggez` as a starting point to get the project off the ground before I replaced it with the much lower-level `wgpu`. I decided that I would probably need something similar. So I used [some other guy's code](https://osblog.stephenmarz.com) to get myself to an `elf` file that boots when run using QEMU.
 
 ## Communications (UART)
 

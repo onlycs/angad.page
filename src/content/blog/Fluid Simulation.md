@@ -1,105 +1,107 @@
 ---
-title: Fluid Simulations Writeup
+title: Fluid Simulation Writeup
 description: A writeup of the process of making a fluid simulation in Rust, from choosing a graphics library to writing compute shaders.
 date: 2025-02-26
-authors: ['Angad Tendulkar']
+authors:
+  - Angad Tendulkar
 tags:
   - projects
   - fluidsim
 ---
-
 > 3/26: Minor grammar changes and explanation improvements
 >
 > 4/06: Fix LaTeX multiplication formatting
 
-I finished my Fluid Simulations project yesterday. The process took around 2 months for me[^1], and I want to document the process. Let's get started.
+I finished my Fluid Simulations project yesterday. The process took around 2 months for me, and I want to document the process. Let's get started.
 
 ## Choosing a Library
 
-To start, I needed a graphics library in Rust. Unfortunately, most of them were, with all due respect for the developers, [unreasonably difficult for beginners](https://github.com/gfx-rs/wgpu), [had unnecessary abstractions with terrible compile times](https://github.com/bevyengine/bevy), or [didn't have a good ecosystem or support for `wasm32` or compute shaders](https://github.com/ggez/ggez)[^2].
+To start, I needed a graphics library in Rust. Unfortunately, most of them were, with all due respect for the developers, [unreasonably difficult for beginners](https://github.com/gfx-rs/wgpu), [had unnecessary abstractions with terrible compile times](https://github.com/bevyengine/bevy), or [didn't have a good ecosystem or any support for `wasm32` or compute shaders](https://github.com/ggez/ggez)[^2].
 
 ### Game Engines are Cheating
 
-I knew this from the very beginning. You learn basically nothing[^3] from having [an overarching graphics and physics engine do all the heavy lifting for you](https://unity.com). I decided that the library that I ended up going with didn't count as a game engine, since [all it does is render](https://github.com/ggez/ggez?tab=readme-ov-file#features), which is just the amount of lift I needed to get this thing off the ground.
+This was my first constraint. You learn basically nothing[^3] from having [an overarching graphics and physics engine do all the heavy lifting for you](https://unity.com). I decided that the library that I ended up going with didn't count as a game engine, since [all it does is render](https://github.com/ggez/ggez?tab=readme-ov-file#features), which is just the amount of lift I needed to get this thing off the ground.
 
 ### The `wgpu` Attempt
 
-`wgpu` is an extremely low-level wrapper for Vulkan and WebGPU. It's meant to be as bare-bones as possible—nothing is there to help the user.
-So I pull up some documentation, and churn out a couple hundred lines of code, not to mention [[The State of Shaders|a point generator written in another language for some reason]] just to get a singular triangle on the screen. This was fucking ridiculous for attempt one.
+`wgpu` is an extremely low-level wrapper for WebGPU. It's meant to be as bare-bones as possible.
+So I pull up some documentation, and churn out a couple hundred lines of code, not to mention [[The State of Shaders|a point generator written in another language for some reason]] just to get a singular triangle on the screen. That was a little ridiculous.
 
-### `ggez` — A Rust library to create a Good Game Easily
+### `ggez` 
 
 `ggez` is a high-level rendering API that runs on top of `wgpu`. It makes it super easy to draw a circle, or even a bunch of circles. However, it did not have `wasm` support, meaning I would need to port this project away from `ggez` to get something working on the web.
-
-## Physics ↔ Rendering Architecture
-
-If you want to wait for a physics tick to finish before drawing anything to the screen, its inefficient. Your window is waiting for physics to finish and physics is waiting for your window to finish, resulting in massive lag and fps drops. So the solution was a little bit of this:
-![](https://i.imgur.com/YSozyI3.png)
-
-### Draw a circle!
-
+## Draw a circle!
 I got circle drawing working on commit [`f318824`](https://github.com/onlycs/fluidsim/tree/f31882452b88e43b8feece42e69d8dae4b412707)
+## Drawing a UI
 
-### Drawing a UI
-
-So I really wanted a little options menu inside the app where you could tune the settings to your liking. To do this, literally everyone uses a well-known library called [`egui`](https://github.com/emilk/egui). Unfortunately, neither `ggez` nor `egui` provided interoperability between the two. [So I did it myself](https://github.com/onlycs/fluidsim/blob/61c2335fca0b86e7fd9ef455459b0dcd48b967e1/src/renderer/egui_translator.rs). It was really annoying. There was literally a block of code where I was just translating [_so many key presses_](https://github.com/onlycs/fluidsim/blob/61c2335fca0b86e7fd9ef455459b0dcd48b967e1/src/renderer/egui_translator.rs#L161-L276). The code was literally just
+So I really wanted a little options menu inside the app where you could tune the settings to your liking. To do this, literally everyone uses a well-known library called [`egui`](https://github.com/emilk/egui). Unfortunately, neither `ggez` nor `egui` provided interoperability between the two. [So I did it myself](https://github.com/onlycs/fluidsim/blob/61c2335fca0b86e7fd9ef455459b0dcd48b967e1/src/renderer/egui_translator.rs). It was really annoying. There was a block of code where I was just translating [_every single keypress_](https://github.com/onlycs/fluidsim/blob/61c2335fca0b86e7fd9ef455459b0dcd48b967e1/src/renderer/egui_translator.rs#L161-L276). Nearly 100 lines of just
 
 ```rust
 match (ggez_keypress) {
 	ggez::KeyCode::KeyA => egui::Key::A,
 	ggez::KeyCode::KeyB => egui::Key::B,
-	// and so on (I'm paraphrasing to make this easier to understand, but still)
+	// and so on
 }
 ```
 
-## The Maths
+## The Math
 
 ### Pixels is not a Unit
 
-The first thing you have to understand is that pixels are not a viable unit to actually use in real life. Fortunately, display information on the Framework 16 is readily available. The number of pixels per inch on the screen I was using was 188. Using a little magic, I made a length unit `pixel`, which converted directly to meters. By the end of it, I was able to drop a pencil and it would line up perfectly with a circle falling on the screen.
+Pixels are not a viable unit to actually use in real life. Fortunately, display information on the Framework 16 is readily available. The number of pixels per inch on the screen I was using was 188. Using a little magic, I made a length unit `pixel`, which converted directly to meters. By the end, I was able to drop a pencil and it would line up perfectly with a circle falling on the screen.
 
 ### The To-Do List
 
-There are two ways people do fluid simulations. I don't remember the first one. The second one is something called smoothed particle hydrodynamics, also known as SPH. This method relies on using a ton of little particles and modeling the forces between them. We use a little something called the [Navier-Stokes equations](<https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations#:~:text=navier%E2%80%93stokes%20equations%20with%20uniform%20viscosity%20(convective%20form)>)[^7] to determine what forces to apply to our particles given some state. Here's what needed to be done.
+There are two ways people do fluid simulations. I don't remember the first one. The second one is something called smoothed particle hydrodynamics, also known as SPH. This method relies on using a ton of little particles and modeling the forces between them. We use a little something called the [Navier-Stokes equations](https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations#:~:text=navier%E2%80%93stokes%20equations%20with%20uniform%20viscosity%20(convective%20form))[^7] to determine what forces to apply to our particles given some state. Here's what needed to be done.
 
 1. Calculate the density $\rho$ at that particle
-2. To calculate the pressure force $a^{pressure}_{i}$, assuming unit mass for simplicity
-   1. The magnitude of the vector, which is $|\rho-\rho_{target}|*k$, where $k$ is strength
-   2. The direction, given by $-\nabla\rho$, the negative gradient of the density function (Calculus!)[^6]
-3. Apply the pressure force
+2. To calculate the pressure force (or, rather, acceleration, because $m=1$) $a^{pressure}_{i}$
+   3. The magnitude of the vector, which is $|\rho-\rho_{target}|*k$, where $k$ is the "pressure multiplier"
+   4. The direction, given by $-\nabla\rho$ (Calculus!)[^6]
+5. Apply the pressure force
 
 ### Calculating the Density
 
 The density is given by this function
 
 $$
-\rho_i = \sum_{j}m_j \times W(||r_i-r_j||)
+\rho_i \approx \sum_{j}m_j \times W(||r_i-r_j||)
 $$
 
 which says, the density $\rho_i$ for a given particle $i$ is approximated to be the weighted sum of the masses $m_j$ for all neighboring particles $j$. The weight is determined by a smoothing function $W$, which takes as its input the distance between the two particles $i$ and $j$, denoted by $||r_i - r_j||$. We're also going to cache the densities for later use.
 
-## The Smoothing Function $W$
+### The Smoothing Function $W$
 
 $W$ is given by
 
 $$
-W(distance, radius) =
+W(r, h) =
   \frac
-    {(radius-distance)^2}
-    {4\pi \times radius^4/6}
+    {(h-r)^2}
+    {4\pi \times h^4/6}
 $$
 
-The $\frac{4\pi * radius^4}{6}$ term is the volume of the smoothing function, calculated a long time ago by Wolfram Alpha when I knew what I was doing.[^8]
+where
+* $h$ is the smoothing radius
+* $r$ is the distance between the two particles
+
+The $\frac{4\pi * h^4}{6}$ term is the volume of the smoothing function, calculated using the following integral, by Wolfram Alpha.
+
+$$
+  \int_0^\pi
+	  \int_0^h (h-r)^2 r \, \mathrm{d}r
+  \, \mathrm{d}\theta
+$$
 
 ### Calculating the Pressure Given Density
 
 The pressure is given by the function
 
 $$
-P_i = |\rho_i-\rho_{target}| \times k
+P_i = |\rho_i-\rho_{\mathrm{target}}| \times k
 $$
 
-which says, the pressure $P_i$ for a given particle $i$ is the difference between the density $\rho$ at $i$ and the target density $\rho_{target}$, multiplied by a strength $k$, which is user-controllable. We only use this once when we calculate the pressure force which repels particles, so there is no need to cache this as well.
+which says, the pressure $P_i$ for a given particle $i$ is the difference between the density $\rho$ at $i$ and the target density $\rho_{\mathrm{target}}$, multiplied by a strength $k$, which is user-controllable. We only use this once when we calculate the pressure force which repels particles, so there is no need to cache this as well.
 
 ### Calculating the Pressure Force
 
@@ -112,7 +114,7 @@ a^{pressure}_i =
   \times \nabla W(||r_i - r_j||)
 $$
 
-However, I'm just realizing that I miswrote it in code. I think I found a different equation elsewhere, which looks something like this
+However, I'm just realizing that I wrote this wrong in code. I think I found a different equation elsewhere, which looks something like this
 
 $$
 a^{pressure}_i =
@@ -179,14 +181,14 @@ def indices_in_cell(cell_key): # pseudocode
 Well this is that bit. To increase viscosity means to decrease the flow of the particles, that is, how much they like to move relative to each other. This is how we calculate it[^11]
 
 $$
-a^{viscosity}_i =
-  k_{viscosity}
+a^{\mathrm{viscosity}}_i =
+  k_{\mathrm{viscosity}}
   \times \sum_j m_j
   \times (v_i - v_j)
   \times W(||r_i - r_j||)
 $$
 
-This essentially averages out velocities, but using the smoothing function so particles further away do not influence the average as much. By scaling based on a relatively small[^12] $k_{viscosity}$, we don't make the simulation ultra-stiff.
+This essentially averages out velocities, but using the smoothing function so particles further away do not influence the average as much. By scaling based on a relatively small[^12] $k_{\mathrm{viscosity}}$, we don't make the simulation ultra-stiff.
 
 ## `wgpu` Port
 
@@ -200,25 +202,21 @@ I'm going to summarize this part, even though it took the longest, by far. The p
 
 Compute shaders are a way to make the GPU do all of the physics computations in parallel, which is faster than doing it on the CPU. Most of the equations listed above need to be repeated for each particle, which the GPU excels at.
 However [[The State of Shaders|the current state of shaders suck]]. And honestly, writing in a language that is not Rust, [but tries to be like Rust](https://github.com/onlycs/jasmine), is really annoying. I mean, pointers just didn't work right. And sometimes, `naga-oil` would just fail to compile it for no reason. After banging my head against a wall for a few weeks, I just decided to move to [`rust-gpu`](https://github.com/rust-gpu/rust-gpu), which is a way to write [`spir-v`](https://en.wikipedia.org/wiki/Standard_Portable_Intermediate_Representation) shaders, directly in Rust.
-The decision meant that I didn't have to do much rewriting, since the code that I wrote for the CPU was very GPU-friendly. The only hard part was the [[Fluid Simulations#Optimization — Spatial Lookup|sort step for spatial lookup]], which I ended up offloading to [a library](https://github.com/KeKsBoTer/wgpu_sort), which [I forked](https://github.com/onlycs/wgpu_sort) to support the latest version of `wgpu`.
+The decision meant that I didn't have to do much rewriting, since the code that I wrote for the CPU was very GPU-friendly. The only hard part was the [[Fluid Simulation#Optimization — Spatial Lookup|sort step for spatial lookup]], which I ended up offloading to [a library](https://github.com/KeKsBoTer/wgpu_sort), which [I forked](https://github.com/onlycs/wgpu_sort) to support the latest version of `wgpu`.
 
 ## The End?
 
-Probably. If I was going to fix something, it would probably be the [[Fluid Simulations#Calculating the Pressure Force|bad]] [[Fluid Simulations#Viscosity|maths]] that exist in some places. But I want to move on, I've spent too long here.
+Probably. If I was going to fix something, it would probably be the [[Fluid Simulation#Calculating the Pressure Force|bad]] [[Fluid Simulation#Viscosity|math]] that exist in some places.
 
-[^1]: Ok, but, I'm _me_. It should definitely **not** take just two months.
+[^2]: I have massive respect for the developers of the aforementioned libraries, but honestly, it [shouldn't](https://github.com/onlycs/fluidsim/tree/renderer-bevy) [be](https://github.com/onlycs/fluidsim/commit/a2703884a17d22066e1d84793dd58067831fef0f) [this hard](https://github.com/onlycs/fluidsim/tree/ggez-wasm32) to draw a ton of colored circles.
 
-[^2]: I respect developers of the aforementioned libraries, but honestly, it [shouldn't](https://github.com/onlycs/fluidsim/tree/renderer-bevy) [be](https://github.com/onlycs/fluidsim/commit/a2703884a17d22066e1d84793dd58067831fef0f) [this hard](https://github.com/onlycs/fluidsim/tree/ggez-wasm32) to draw a ton of colored circles, even on a `wasm` target
-
-[^3]: You learn fluid simulation maths, but nothing about how computers render shit, which is what I was really after
+[^3]: You learn fluid simulation math, but nothing about how computers render, which is what I was really after
 
 [^5]: Pixels per inch
 
-[^6]: God bless Mrs. Dirtadian and the fact that I'm in precalc honors right now, otherwise I wouldn't have been able to math.
+[^6]: Calculus is fun guys, trust
 
 [^7]: No, I did not actually read and understand this Wikipedia article
-
-[^8]: I remember that there were two integral signs but that's all I know
 
 [^9]: If you haven't taken calculus yet, you can think of `Vec2` like a point on the X/Y plane
 
