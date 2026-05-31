@@ -100,7 +100,7 @@ V &= \int_0^{2\pi}
 $$
 #### 3.2.4. Derivatives 
 $$
-c^\prime(r, h) = \frac{s(r, h)}{V}
+c^\prime(r, h) = \frac{\frac{d}{dr}s(r, h)}{V}
 $$
 * $c^\prime$ is the derivative of the curve
 * $s(r, h)$ is the unscaled smoothing term (e.g. $(h-r)^2$ for density)
