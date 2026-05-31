@@ -102,7 +102,7 @@ $$
 $$
 c^\prime(r, h) = \frac{\frac{d}{dr}s(r, h)}{V}
 $$
-* $c^\prime$ is the derivative of the curve
+* $c^\prime$ is the (partial) derivative of the curve[^5]
 * $s(r, h)$ is the unscaled smoothing term (e.g. $(h-r)^2$ for density)
 * $V$ is the volume of said smoothing term, calculations above.
 ### 3.3. Bounding Box Transformations
@@ -195,3 +195,5 @@ That's essentially everything I changed to make the simulation in three dimensio
 [^3]: One physics unit equals 100 pixels
 
 [^4]: I realize that most mathematics represents this as $q = A + Bi + Cj + Dk$, but the actual data is packed is $\begin{pmatrix}x & y & z & w\end{pmatrix}$, so I'm just going to roll with the latter.
+
+[^5]: I am where notation goes to die.
