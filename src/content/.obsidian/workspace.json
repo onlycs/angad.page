@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "blog/Fluid Simulation in 3 Dimensions.md",
+                "file": "blog/The State of Shaders.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Fluid Simulation in 3 Dimensions"
+              "title": "The State of Shaders"
             }
           }
         ]
@@ -196,6 +196,21 @@
   },
   "active": "1b1e9fafa8db17c6",
   "lastOpenFiles": [
+    "blog/WPILib's Coordinate System.md",
+    "projects/angad-os.md",
+    "projects/oreobot.md",
+    "projects/robot2026.md",
+    "projects/robot2025.md",
+    "projects/robot2024.md",
+    "projects/motorola-doha.md",
+    "projects/kbnt.md",
+    "projects/jasmine.md",
+    "projects/fluidsim.md",
+    "projects/elastic.md",
+    "projects/bitboard-chess.md",
+    "projects/autochess.md",
+    "projects/attendance.md",
+    "blog/Fluid Simulation in 3 Dimensions.md",
     "blog/Fluid Simulation.md",
     "blog/Operating Systems - Hello, World!.md",
     "blog/Ferrobot - Introduction.md",
@@ -204,21 +219,8 @@
     "blog/Operating Systems - Memory Allocation.md",
     "blog/Makefile.md",
     "blog/KBNT.md",
-    "blog/Fluid Simulation in 3 Dimensions.md",
     "blog/Notes on Rebuilt.md",
-    "projects/fluidsim.md",
     "blog/AP Language and Composition.md",
-    "projects/angad-os.md",
-    "projects/autochess.md",
-    "projects/bitboard-chess.md",
-    "projects/elastic.md",
-    "blog/A Proper Sketch of Conduit.md",
-    "blog/The New Blog.md",
-    "blog/The NYS K-12 Personal Electronic Device Policy.md",
-    "blog/The State of Shaders.md",
-    "blog/WPILib's Coordinate System.md",
-    "authors/angad.md",
-    "pages.cloudflare.com.md",
-    "projects/attendance.md"
+    "blog/A Proper Sketch of Conduit.md"
   ]
 }

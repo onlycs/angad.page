@@ -125,9 +125,9 @@ $$
 The rotation matrix is a bit more complicated. Start with
 $$
 \begin{array}{lll}
-r_{00} = 1 - 2(y^2 + z^2) & r_{01} = 2(xy - wz) & r_{02} = 2(xz + wy) \\
+r_{00} = 1 - 2(y^2 + z^2) & r_{01} = 2(xy - wz)       & r_{02} = 2(xz + wy) \\
 r_{10} = 2(xy + wz)       & r_{11} = 1 - 2(x^2 + z^2) & r_{12} = 2(yz - wx) \\
-r_{20} = 2(xz - wy)       & r_{21} = 2(yz + wx) & r_{22} = 1 - 2(x^2 + y^2)
+r_{20} = 2(xz - wy)       & r_{21} = 2(yz + wx)       & r_{22} = 1 - 2(x^2 + y^2)
 \end{array}
 $$
 And then
