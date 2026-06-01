@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "4e13d802cf1b19fa",
+        "id": "d97d366b75d9f108",
         "type": "tabs",
         "children": [
           {
-            "id": "15553744c0cc6afe",
+            "id": "7d5bd775d31f557a",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "split-diff-view",
               "state": {
-                "file": "blog/Fluid Simulation in 3 Dimensions.md",
-                "mode": "source",
-                "source": false
+                "aFile": "src/content/blog/Fluid Simulation.md",
+                "bFile": "src/content/blog/Fluid Simulation.md",
+                "aRef": ""
               },
-              "icon": "lucide-file",
-              "title": "Fluid Simulation in 3 Dimensions"
+              "icon": "diff",
+              "title": "Diff: Fluid Simulation  (Working Tree)"
             }
           }
         ]
@@ -194,11 +194,13 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "15553744c0cc6afe",
+  "active": "7d5bd775d31f557a",
   "lastOpenFiles": [
+    "blog/AP Language and Composition.md",
+    "blog/Operating Systems - Hello, World!.md",
+    "blog/Fluid Simulation.md",
     "blog/Fluid Simulation in 3 Dimensions.md",
     "projects/kbnt.md",
-    "blog/Fluid Simulation.md",
     "blog/Ferrobot - Finishing FFI.md",
     "blog/Operating Systems - Memory Allocation.md",
     "blog/The State of Shaders.md",
@@ -215,12 +217,10 @@
     "projects/bitboard-chess.md",
     "projects/autochess.md",
     "projects/attendance.md",
-    "blog/Operating Systems - Hello, World!.md",
     "blog/Ferrobot - Introduction.md",
     "blog/Rate Limiting Controllers.md",
     "blog/Makefile.md",
     "blog/KBNT.md",
-    "blog/Notes on Rebuilt.md",
-    "blog/AP Language and Composition.md"
+    "blog/Notes on Rebuilt.md"
   ]
 }

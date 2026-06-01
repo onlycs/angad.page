@@ -154,7 +154,7 @@ This means that there can be up to 16384 particle positions, each of which are g
 Let's look at a smaller example:
 ![](https://i.imgur.com/0V2YYD4.png)
 Here we have a 2 by 3 grid of particles, and 5 available particles. I've color coded them.
-Lets do an example computation for particle 1. The position for the particle is $(1, 1)$[^10]. To get a special number called the cell key, we can multiply the $x$ and $y$ positions by two different prime numbers, $p_1$ and $p_2$, then add them up. Let's say the cell key for the particle becomes 47. We then have to wrap that around the number of particles (there are 6), so we divide the cell key by 6, but take the remainder, 5 in this case.
+Lets do an example computation for particle 1. The position of the particle's cell is $(1, 1)$[^10]. To get a special number called the cell key, we can multiply the $x$ and $y$ positions by two different prime numbers, $p_1$ and $p_2$, then add them up. Let's say the cell key for the particle becomes 47. We then have to wrap that around the number of particles (there are 6), so we divide the cell key by 6, but take the remainder, 5 in this case.
 ![](https://i.imgur.com/PwnXg21.png)
 We can go ahead and do this for all particles, and then we need to sort both the particle indices using the cell keys as the keys for the sort.
 ![](https://i.imgur.com/2EINaEC.png)

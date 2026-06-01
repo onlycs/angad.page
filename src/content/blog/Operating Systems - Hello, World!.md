@@ -30,7 +30,7 @@ UART stands for Universal Asynchronous Receiver-Transmitter. QEMU emulates the [
 
 ### Setting Up the Chip
 
-We're going to follow along with this [nice flowchart](https://www.intel.com/content/www/us/en/docs/programmable/683130/22-2/16550-uart-general-programming-flow-chart.html), using [this wiki](http://www.breakintoprogram.co.uk/hardware/components/8250-uarts) for addresses and stuff.
+We're going to follow along with this [nice flowchart](https://docs.altera.com/r/docs/683130/25.3/embedded-peripherals-ip-user-guide/uart-general-programming-flow-chart), using [this wiki](http://www.breakintoprogram.co.uk/hardware/components/8250-uarts) for addresses and stuff.
 
 First, I'm going to make a struct with the base address of the UART.
 
