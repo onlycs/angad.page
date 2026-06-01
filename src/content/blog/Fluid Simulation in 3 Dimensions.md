@@ -155,9 +155,9 @@ Then, the projection matrix is given by:
 $$
 \mathbf{P} = 
 \begin{pmatrix}
-\dfrac{s}{\text{aspect}} & 0 & 0 & 0 \\
+\frac{s}{\text{aspect}} & 0 & 0 & 0 \\
 0 & s & 0 & 0 \\
-0 & 0 & -\dfrac{f+n}{f-n} & -\dfrac{2fn}{f-n} \\
+0 & 0 & -\frac{f+n}{f-n} & -\frac{2fn}{f-n} \\
 0 & 0 & -1 & 0
 \end{pmatrix}
 $$
@@ -194,6 +194,6 @@ That's essentially everything I changed to make the simulation in three dimensio
 
 [^3]: One physics unit equals 100 pixels
 
-[^4]: I realize that most mathematics represents this as $q = A + Bi + Cj + Dk$, but the actual data is packed is $\begin{pmatrix}x & y & z & w\end{pmatrix}$, so I'm just going to roll with the latter.
+[^4]: I realize that most mathematics represents this as $q = A + Bi + Cj + Dk$, but the actual data is packed as $\begin{pmatrix}x & y & z & w\end{pmatrix}$, so I'm just going to roll with the latter.
 
 [^5]: I am where notation goes to die.

@@ -125,16 +125,15 @@ $$
 
 Don't really know how that happened. Let's go over this term-by-term
 
-- $a^{pressure}_i$ represents the applied pressure force to some particle $i$
+- $a^{pressure}_i$ represents the applied pressure force[^14] to particle $i$.
 - $\sum_j$ means "for every particle j, add up the following:"
 - $m_j$ represents the mass of particle j
 - $P_i$ and $P_j$ represents the pressure of two particles $i$ and $j$
-- $\nabla W$ represents the inverse gradient of the smoothing function $W$, i.e. $W'$ or the first derivitave of $W$.
-- $\rho_i$ is the density of some particle $i$
+- $\nabla W$ represents the gradient of the smoothing kernel $W$.[^13] It points in the direction of the greatest increase of $W$, and its' magnitude describes how rapidly $W$ changes with position.
+- $\rho_i$ is the density at the position of some particle $i$
 - $||r_i - r_j||$ is the distance between the positions of particles $i$ and $j$
 
 After programming all of that, we get a slow, but usable simulation. It's a bit chaotic, and I'll get to why in a bit, but we first have to do some optimization.
-
 ## Optimization — Spatial Lookup
 
 Our current code is written to loop over every particle $j$. However, the smoothing function $W$ returns zero after a given smoothing radius.
@@ -150,7 +149,7 @@ We currently store the particles like this:
 positions: [Vec2; 16384],
 ```
 
-This means that there can be up to 16384 particle positions, each of which are given by some two dimensional vector[^9], centered at the center of the window.
+This means that there can be up to 16384 particle positions, each of which are given by some two dimensional vector[^9].
 
 Let's look at a smaller example:
 ![](https://i.imgur.com/0V2YYD4.png)
@@ -218,10 +217,14 @@ Probably. If I was going to fix something, it would probably be the [[Fluid Simu
 
 [^7]: No, I did not actually read and understand this Wikipedia article
 
-[^9]: If you haven't taken calculus yet, you can think of `Vec2` like a point on the X/Y plane
+[^9]: If you haven't taken a physics or linear algebra class yet, you can think of `Vec2` like a point on the X/Y plane
 
 [^10]: For computers, we measure position from the top-left
 
 [^11]: This is not super accurate, I know.
 
 [^12]: ~0.06
+
+[^13]: Some sort of partial derivative, the math is slightly too high-level for my expertise.
+
+[^14]: Technically, acceleration, but it doesn't matter since mass is equal to one.
