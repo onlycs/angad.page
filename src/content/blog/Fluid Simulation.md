@@ -68,7 +68,6 @@ $$
 $$
 
 which says, the density $\rho_i$ for a given particle $i$ is approximated to be the weighted sum of the masses $m_j$ for all neighboring particles $j$. The weight is determined by a smoothing function $W$, which takes as its input the distance between the two particles $i$ and $j$, denoted by $||r_i - r_j||$. We're also going to cache the densities for later use.
-
 ### The Smoothing Function $W$
 
 $W$ is given by
