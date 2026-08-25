@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "d97d366b75d9f108",
+        "id": "4803da8a61d51233",
         "type": "tabs",
         "children": [
           {
-            "id": "7d5bd775d31f557a",
+            "id": "b0e6dd74f3f0f13d",
             "type": "leaf",
             "state": {
-              "type": "split-diff-view",
+              "type": "markdown",
               "state": {
-                "aFile": "src/content/blog/Fluid Simulation.md",
-                "bFile": "src/content/blog/Fluid Simulation.md",
-                "aRef": ""
+                "file": "blog/Fluid Simulation.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "diff",
-              "title": "Diff: Fluid Simulation  (Working Tree)"
+              "icon": "lucide-file",
+              "title": "Fluid Simulation"
             }
           }
         ]
@@ -41,7 +41,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -194,14 +196,14 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "7d5bd775d31f557a",
+  "active": "b0e6dd74f3f0f13d",
   "lastOpenFiles": [
+    "blog/Fluid Simulation in 3 Dimensions.md",
+    "blog/Ferrobot - Finishing FFI.md",
     "blog/AP Language and Composition.md",
     "blog/Operating Systems - Hello, World!.md",
     "blog/Fluid Simulation.md",
-    "blog/Fluid Simulation in 3 Dimensions.md",
     "projects/kbnt.md",
-    "blog/Ferrobot - Finishing FFI.md",
     "blog/Operating Systems - Memory Allocation.md",
     "blog/The State of Shaders.md",
     "blog/WPILib's Coordinate System.md",

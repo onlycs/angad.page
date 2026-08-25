@@ -56,10 +56,9 @@ There are two ways people do fluid simulations. I don't remember the first one. 
 
 1. Calculate the density $\rho$ at that particle
 2. To calculate the pressure force (or, rather, acceleration, because $m=1$) $a^{pressure}_{i}$
-   3. The magnitude of the vector, which is $|\rho-\rho_{target}|*k$, where $k$ is the "pressure multiplier"
-   4. The direction, given by $-\nabla\rho$ (Calculus!)[^6]
+3. The magnitude of the vector, which is $|\rho-\rho_{target}|*k$, where $k$ is the "pressure multiplier"
+4. The direction, given by $-\nabla\rho$ (Calculus!)[^6]
 5. Apply the pressure force
-
 ### Calculating the Density
 
 The density is given by this function
