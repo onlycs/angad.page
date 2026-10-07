@@ -29,6 +29,5 @@ So, ask yourself, what would CloudStrike Falcon see when looking at the compiled
 * Interestingly, only the release binary was flagged by CSF. Building in Rust's debug mode allowed KBNT to flow under the radar. Considering the latter binary *has* debug symbols... this is incredibly interesting because it should have theoretically been significantly easier to detect.
 * There's no API to interrupt and/or run a function (on a thread) when an NT value changes (on the Java side). You'd have to poll on the 20Hz event loop, which could cause you to miss keypresses if you didn't use my solution.
 * WPILib is pretty flawed in general, [[Ferrobot - Introduction|something I hope to fix in my lifetime]].
-* Our first robotics competition (Hudson Valley Regional) is being held at Rockland Community College. Did you know that this county (i.e. Rockland County) has the highest Jewish population proportion of any county in the entirety of the United States of America, at like 30ish percent?
 
 [^1]: who, for context, already don't like me too much

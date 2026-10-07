@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "blog/Fluid Simulation.md",
+                "file": "blog/KBNT.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Fluid Simulation"
+              "title": "KBNT"
             }
           }
         ]
@@ -198,9 +198,10 @@
   },
   "active": "b0e6dd74f3f0f13d",
   "lastOpenFiles": [
+    "Untitled.md",
+    "blog/Fluid Simulation.md",
     "blog/Fluid Simulation in 3 Dimensions.md",
     "blog/Makefile.md",
-    "blog/Fluid Simulation.md",
     "blog/Ferrobot - Finishing FFI.md",
     "blog/AP Language and Composition.md",
     "blog/Operating Systems - Hello, World!.md",
@@ -222,7 +223,6 @@
     "projects/attendance.md",
     "blog/Ferrobot - Introduction.md",
     "blog/Rate Limiting Controllers.md",
-    "blog/KBNT.md",
-    "blog/Notes on Rebuilt.md"
+    "blog/KBNT.md"
   ]
 }
